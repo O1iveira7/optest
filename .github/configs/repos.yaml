@@ -236,6 +236,10 @@ repos:
   FlagTensor:
     default_branch: main
     # Uses the shared backend images (vllm), no override needed.
+    # Disable PyTorch backend extension auto-loading to avoid flagcx load
+    # failures in the vllm-plugin-fl image crashing the test runner.
+    test_env:
+      TORCH_DEVICE_BACKEND_AUTOLOAD: "0"
     backends:
       H800: {enabled: true}
       910B: {enabled: true}
